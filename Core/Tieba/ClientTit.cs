@@ -23,7 +23,7 @@ namespace Tieba
 
         public List<string> Level = new List<string>();
 
-        //public List<string> Himgs = new List<string>();
+        public List<string> Por = new List<string>();
 
         public List<string> Uids = new List<string>();
 
@@ -47,13 +47,13 @@ namespace Tieba
             title = HttpHelper.Jq(res, "collect_mark_pid\":\"0\",\"title\":\"", "\"");
             if (title == null)
             {
-                throw new Exception("获取标题错误，请检查帖子是否存在");
+                throw new Exception("-1:贴子不存在");
             }
             title = Regex.Unescape(title);
             maxPn = int.Parse(HttpHelper.Jq(res, "\"total_page\":\"", "\""));
           //  int indexsplit = res.IndexOf(",\"user_list\":[");
             MatchCollection mcs = new Regex(@"""id"":""([^""]+)"",""title"".+?""time"":""(\d+)"",""content"":\[(.*?)\],""lbs_info"".+?(\]|\}),""author_id"":""([^""""]+)""").Matches(HttpHelper.Jq(res, "\"post_list\":[", "],\"thread\":{"));
-            MatchCollection mc1 = new Regex(@"""id"":""([^""]+)"",""portrait"":"".+?"",""name"":""([^""]*)"",""name_show"":""([^""]+)"",.+?""level_id"":""([^""]*)""").Matches(HttpHelper.Jq(res, "\"user_list\":[", "partial_visible_toast"));
+            MatchCollection mc1 = new Regex(@"""id"":""([^""]+)"",""portrait"":""(.+?)"",""name"":""([^""]*)"",""name_show"":""([^""]+)"",.+?""level_id"":""([^""]*)""").Matches(HttpHelper.Jq(res, "\"user_list\":[", "partial_visible_toast"));
             Dictionary<string, string[]> uidname = new Dictionary<string, string[]>();
             for (int i = 0; i < mc1.Count; i++)
             {
@@ -61,7 +61,7 @@ namespace Tieba
                 {
                     continue;
                 }
-                uidname.Add(mc1[i].Groups[1].Value, new string[] { mc1[i].Groups[2].Value, mc1[i].Groups[3].Value, mc1[i].Groups[4].Value });
+                uidname.Add(mc1[i].Groups[1].Value, new string[] { mc1[i].Groups[2].Value, mc1[i].Groups[3].Value, mc1[i].Groups[4].Value, mc1[i].Groups[5].Value });
             }
 
             for (int i = 0; i < mcs.Count; i++)
@@ -76,9 +76,10 @@ namespace Tieba
                 Content.Add(Regex.Unescape(mcs[i].Groups[3].Value));
                 Uids.Add(mcs[i].Groups[5].Value);
                 string[] namelev = uidname[mcs[i].Groups[5].Value];
-                Authors.Add(Regex.Unescape(namelev[0] == "" ? "昵称:" + namelev[1] : namelev[0]));
+                Por.Add(namelev[0]);
+                Authors.Add(Regex.Unescape(namelev[1] == "" ? "昵称:" + namelev[2] : namelev[1]));
                 // Himgs.Add("https://gss0.bdstatic.com/6LZ1dD3d1sgCo2Kml5_Y_D3/sys/portrait/item/" + mcs[i].Groups[5].Value);
-                Level.Add(namelev[2]);
+                Level.Add(namelev[3]);
 
             }
 

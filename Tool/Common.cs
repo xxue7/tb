@@ -84,10 +84,14 @@ namespace Tieba
             string portrait = "";
             if (string.IsNullOrEmpty(blockname))
             {
-                if (new Regex(@"^\d{1,}$").IsMatch(uid_portrait))
-                {
-                    portrait = uid2portrait(uid_portrait);
-                }
+                //if (new Regex(@"^\d{1,}$").IsMatch(uid_portrait))
+                //{
+                //    portrait = uid2portrait(uid_portrait);
+                //}
+                //else
+                //{
+                    portrait = uid_portrait;
+                //}
                 //else //if (new Regex(@"^p:[0-9a-f]{8,}$").IsMatch(uid_portrait))
                 //{
                 //    portrait = uid_portrait.Substring(2);
@@ -99,8 +103,7 @@ namespace Tieba
                 //}
 
             }
-            string postdata = new Regex("BDUSS=(.{192})").Match(user.cookie).Value + "&day=" + day + "&fid=" + fid + "&ntn=banid&portrait=" + portrait + "&post_id=6233732579&reason=" + reason + "&tbs=" + user.tbs + "&un=" + blockname + "&word=" + kw + "&z=6233732579";
-
+            string postdata = new Regex("BDUSS=(.{192})").Match(user.cookie).Value + "&_client_id=wappc_1559714929207_884&_client_type=1&_client_version=12.21.1.0&_os_version=12.3.1&_phone_imei=AE2CBC629C2745EFE8129FB3DCE46101&_phone_newimei=AE2CBC629C2745EFE8129FB3DCE46101&_timestamp=1659553777921&brand=iPhone&brand_type=iPhone 6S&cuid=AE2CBC629C2745EFE8129FB3DCE46101&day=" + day + "&fid=" + fid + "&from=appstore&lego_lib_version=3.0.0&m_api=c/u/bawu/listreason&m_cost=585.227013&m_logid=3052876179&m_size_d=283&m_size_u=4878&model=iPhone 6S&net_type=1&nick_name=&ntn=banid&portrait=" + portrait + "&post_id=6233732579&reason=" + reason + "&shoubai_cuid=DFAF30D54C2C457186B6BD4D020692170BCAB0F94FHEPEGIILD&stoken=&subapp_type=tieba&tbs=" + user.tbs + "&un=" + blockname + "&word=" + kw + "&z=6233732579&z_id=YdGh_vJLQoNLhh02Rba1OKOYx65J2INcoAdqvO4mhWcwuxm2HgH5QrU7GKk6-NF2NQsFS5TOIpFTo-cNOiz8ktg";
             postdata = postdata + "&sign=" + HttpHelper.GetMD5HashFromFile(postdata.Replace("&", "") + "tiebaclient!!!");
 
             string res = Regex.Unescape(HttpHelper.HttpPost(Conf.APP_URL + "/c/c/bawu/commitprison", postdata, user.cookie, null));
@@ -131,17 +134,17 @@ namespace Tieba
             return "失败: " + HttpHelper.Jq(res, "errmsg\":\"", "\"");
         }
 
-        public static string uid2portrait(string uid)
-        {
-            string portra = "";
-            string uidi = long.Parse(uid).ToString("x").PadLeft(8, '0');
-            for (int i = 6; i >= 0; i -= 2)
-            {
-                portra += uidi.Substring(i, 2);
-            }
+        //public static string uid2portrait(string uid)
+        //{
+        //    string portra = "";
+        //    string uidi = long.Parse(uid).ToString("x").PadLeft(8, '0');
+        //    for (int i = 6; i >= 0; i -= 2)
+        //    {
+        //        portra += uidi.Substring(i, 2);
+        //    }
 
-            return portra;
-        }
+        //    return portra;
+        //}
 
         public static T readXml<T>(string xml)
         {
@@ -227,7 +230,7 @@ namespace Tieba
         //}
 
 
-        //public static string Delete(string tid,string kw = "", string fid = "")
+        //public static string Delete1(string tid, string kw = "", string fid = "")
         //{
 
         //    if (kw == "" && fid == "")

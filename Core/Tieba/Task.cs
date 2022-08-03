@@ -398,9 +398,12 @@ namespace Tieba
                     }
                     catch (Exception ee)
                     {
-
-                        adddefulttid(ltids[i]);
-                        txtCallback(Thread.CurrentThread.Name + "--ThreadComplex("+ltids[i]+"):" + ee.StackTrace, Color.Red);
+                        if (!ee.Message.StartsWith("-1"))
+                        {
+                            adddefulttid(ltids[i]);
+                        }
+                        
+                        txtCallback(Thread.CurrentThread.Name + "--ThreadComplex("+ltids[i]+"):" + ee.StackTrace+"\r\n"+ee.Message, Color.Red);
                     }
 
 
@@ -955,6 +958,7 @@ namespace Tieba
                             log.title = restit.title + "--->" + tconten;
                             log.tid = tidComplex + "&" + pid;
                             log.uid = restit.Uids[i];
+                            log.por = restit.Por[i];
                             string nickname = restit.Authors[i].StartsWith("昵称:") ? "" : restit.Authors[i];
                             /*if (flagB)
                             {
@@ -991,7 +995,7 @@ namespace Tieba
                             }
                             if (mode.isblock && !zxbool)
                             {
-                                log.result = Common.Block(nickname, restit.Uids[i], mode.blockday, mode.reason);
+                                log.result = Common.Block(nickname, restit.Por[i], mode.blockday, mode.reason);
                             }
                             if (mode.isblackname && !zxbool)
                             {

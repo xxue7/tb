@@ -469,6 +469,7 @@ namespace Tieba
                 lv.SubItems.Add(log.tbname);
                 lv.SubItems.Add(log.fid);
                 lv.SubItems.Add(log.uid);
+                lv.SubItems.Add(log.por);
                 listView1.Items.Add(lv);
                 //repeatLog.Add(log.tid);
             }
@@ -504,7 +505,8 @@ namespace Tieba
                     item.SubItems[5].Text,
                     item.SubItems[6].Text,
                     item.SubItems[7].Text,
-                    item.SubItems[8].Text));
+                    item.SubItems[8].Text,
+                   item.SubItems[9].Text));
             }
             Common.Serialize<List<Log>>(list, pzpath + "log.xml");
             //string log = "";
@@ -655,7 +657,7 @@ namespace Tieba
                                         string res = "";
                                         if (bt.Text == "封删选中")
                                         {
-                                            res = Common.Block(item.SubItems[1].Text.StartsWith("昵称:") ? "" : item.SubItems[1].Text, item.SubItems[8].Text, int.Parse(txtblockday.Text.Trim()), txtreason.Text);
+                                            res = Common.Block(item.SubItems[1].Text.StartsWith("昵称:") ? "" : item.SubItems[1].Text, item.SubItems[9].Text, int.Parse(txtblockday.Text.Trim()), txtreason.Text);
                                             // ShowInfo("执行删封禁选中:" + res, Color.Red);
                                         }
                                         string tidpid = item.SubItems[3].Text;
@@ -1463,7 +1465,7 @@ namespace Tieba
         {
             if (listView1.SelectedItems.Count>0)
             {
-                textBox5.Text ="作者:"+ listView1.SelectedItems[0].SubItems[1].Text+"  uid:"+ listView1.SelectedItems[0].SubItems[8].Text + "\r\n" + listView1.SelectedItems[0].SubItems[2].Text;
+                textBox5.Text ="作者:"+ listView1.SelectedItems[0].SubItems[1].Text+"  uid:"+ listView1.SelectedItems[0].SubItems[8].Text+"  por:"+ listView1.SelectedItems[0].SubItems[9].Text  + "\r\n" + listView1.SelectedItems[0].SubItems[2].Text;
             }
         }
 

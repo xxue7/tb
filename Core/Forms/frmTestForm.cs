@@ -154,7 +154,7 @@ namespace Tieba
                     catch (Exception ee)
                     {
 
-                        textBox4.AppendText(ee.StackTrace + "\r\n");
+                        textBox4.AppendText(ee.StackTrace + "\r\n" + ee.Message);
                     }
 
 

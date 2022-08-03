@@ -114,6 +114,7 @@
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -134,7 +135,7 @@
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.por = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -985,7 +986,8 @@
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader8,
-            this.columnHeader18});
+            this.columnHeader18,
+            this.por});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.FullRowSelect = true;
             this.listView1.LabelEdit = true;
@@ -1011,7 +1013,7 @@
             // columnHeader3
             // 
             this.columnHeader3.Text = "标题";
-            this.columnHeader3.Width = 170;
+            this.columnHeader3.Width = 103;
             // 
             // columnHeader4
             // 
@@ -1076,6 +1078,14 @@
             this.groupBox6.TabIndex = 3;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "信息";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(241, 71);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(227, 21);
+            this.textBox8.TabIndex = 24;
             // 
             // textBox7
             // 
@@ -1273,13 +1283,9 @@
             this.label14.TabIndex = 1;
             this.label14.Text = "吧名:";
             // 
-            // textBox8
+            // por
             // 
-            this.textBox8.Location = new System.Drawing.Point(241, 71);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(227, 21);
-            this.textBox8.TabIndex = 24;
+            this.por.Text = "por";
             // 
             // TaskForm
             // 
@@ -1432,5 +1438,6 @@
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.ColumnHeader por;
     }
 }

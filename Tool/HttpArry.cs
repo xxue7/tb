@@ -216,7 +216,7 @@ namespace BaiduHelper
            // ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;
             req.Method = "POST";
             req.ContentType = "application/x-www-form-urlencoded";
-            req.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
+           req.UserAgent = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36";
               
             if (!string.IsNullOrEmpty(cookie))
             {
