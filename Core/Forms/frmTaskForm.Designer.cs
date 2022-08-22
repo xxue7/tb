@@ -112,6 +112,7 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.por = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
@@ -135,7 +136,10 @@
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.por = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button11 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -152,6 +156,7 @@
             this.groupBox5.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.groupBox9.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1045,6 +1050,10 @@
             this.columnHeader18.Text = "uid";
             this.columnHeader18.Width = 62;
             // 
+            // por
+            // 
+            this.por.Text = "por";
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.groupBox6);
@@ -1235,6 +1244,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.groupBox2);
             this.tabPage5.Controls.Add(this.groupBox9);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
@@ -1249,17 +1259,17 @@
             this.groupBox9.Controls.Add(this.linkLabel9);
             this.groupBox9.Controls.Add(this.textBox2);
             this.groupBox9.Controls.Add(this.label14);
-            this.groupBox9.Location = new System.Drawing.Point(122, 34);
+            this.groupBox9.Location = new System.Drawing.Point(169, 19);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(496, 112);
+            this.groupBox9.Size = new System.Drawing.Size(376, 70);
             this.groupBox9.TabIndex = 0;
             this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "初始";
+            this.groupBox9.Text = "封禁";
             // 
             // linkLabel9
             // 
             this.linkLabel9.AutoSize = true;
-            this.linkLabel9.Location = new System.Drawing.Point(274, 46);
+            this.linkLabel9.Location = new System.Drawing.Point(246, 32);
             this.linkLabel9.Name = "linkLabel9";
             this.linkLabel9.Size = new System.Drawing.Size(77, 12);
             this.linkLabel9.TabIndex = 12;
@@ -1269,23 +1279,59 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(108, 43);
+            this.textBox2.Location = new System.Drawing.Point(80, 29);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(143, 21);
             this.textBox2.TabIndex = 2;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(67, 46);
+            this.label14.Location = new System.Drawing.Point(39, 32);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(35, 12);
             this.label14.TabIndex = 1;
             this.label14.Text = "吧名:";
+          //  this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
-            // por
+            // textBox3
             // 
-            this.por.Text = "por";
+            this.textBox3.Location = new System.Drawing.Point(80, 22);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(143, 21);
+            this.textBox3.TabIndex = 14;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(39, 25);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(29, 12);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "tid:";
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(248, 20);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(51, 23);
+            this.button11.TabIndex = 15;
+            this.button11.Text = "del";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.button11);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Location = new System.Drawing.Point(169, 116);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(376, 63);
+            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "删帖";
             // 
             // TaskForm
             // 
@@ -1325,6 +1371,8 @@
             this.tabPage5.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1439,5 +1487,9 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.ColumnHeader por;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

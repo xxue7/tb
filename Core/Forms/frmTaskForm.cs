@@ -1469,7 +1469,52 @@ namespace Tieba
             }
         }
 
-      
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        //private void label14_Click(object sender, EventArgs e)
+        //{
+
+        //}
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            string tid = textBox3.Text.Trim();
+            if (String.IsNullOrWhiteSpace(tid))
+            {
+                MessageBox.Show("tid不能为空");
+                return;
+            }
+            button1.Enabled = false;
+            ThreadPool.QueueUserWorkItem(o=> {
+                string err = "";
+                try
+                {
+                    WebClient wb = new WebClient();
+                    string res = wb.DownloadString("https://tieba.baidu.com/photo/bw/catch/threadInfo?tid="+tid);
+                    string fid = HttpHelper.Jq(res, "fid\":", ",");
+                    string kw = Regex.Unescape(HttpHelper.Jq(res, "fname\":\"", "\""));
+                    err = "吧名:"+kw+"\n标题:"+Regex.Unescape(HttpHelper.Jq(res, "title\":\"", "\""))+"\n信息:";
+                    if (!String.IsNullOrWhiteSpace(fid))
+                    {
+                        err += Common.Delete(tid,kw , fid);
+                    }
+                   
+                }
+                catch (Exception ee)
+                {
+
+                    err+=ee.Message;
+                }
+                MessageBox.Show(err,Common.user.un);
+                button1.Enabled = true;
+            });
+
+        }
+
+
 
 
 
