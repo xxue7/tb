@@ -4,6 +4,8 @@ using System.Threading;
 using System.Text.RegularExpressions;
 using System.Drawing;
 using System.Net;
+using BaiduHelper;
+
 namespace Tieba
 {
     public  delegate void TxtCallback(string str, Color color);
@@ -705,71 +707,76 @@ namespace Tieba
             #endregion
             // string html1 = HttpHelper.HttpGet("http://wapp.baidu.com/f?ie=utf-8&kw="+mode.mangertb , Encoding.UTF8,"USER_RS="+Common.user.uid+"_50_30_1; "+Common.user.cookie, false, true);
            string html1= Common.scantidcount(mode.mangertb);
-            MatchCollection mcs = new Regex(@"thread_id"":""([^""]+)"",""original_tid"":""0"".+?last_time_int"":""([^""]+)""").Matches(html1);
+            string[] tids = HttpHelper.P_jq(html1, "tieba.baidu.com/p/", "\"");
+            string[] rtimes= HttpHelper.P_jq(html1, "last_time_int\":", ",");
+            // MatchCollection mcs = new Regex(@"thread_id"":""([^""]+)"",""original_tid"":""0"".+?last_time_int"":""([^""]+)""").Matches(html1);
             //string[] tds =HttpHelper.P_jq( html,"m?kz=","&amp;");
-           //new Regex(@"kz=(\d{1,10}).+?(\d{1,2}[:-]\d{1,2})</p>", RegexOptions.Singleline)
+            //new Regex(@"kz=(\d{1,10}).+?(\d{1,2}[:-]\d{1,2})</p>", RegexOptions.Singleline)
             //string[] replytimes = HttpHelper.P_jq(html, "&#160;", "</p>");
-           
-            for (int i = 0; i < mcs.Count; i++)
+            if (tids.Length==rtimes.Length)
             {
-                string tidte = mcs[i].Groups[1].Value, replycountte = mcs[i].Groups[2].Value;
-                #region MyRegion
-                //if (i == tds.Length)
-                //{
-                //    if (!string.IsNullOrEmpty(tidzhi))
-                //    {
-                //        tidte = tidzhi;
-                //        replycountte = replycountzhi;
-                //    }
-                //    else
-                //    {
-                //        break;
-                //    }
-
-                //}
-                //else
-                //{
-                //    tidte = tds[i];
-                //    replycountte = replaycounts[i];
-                //}
-                //int index = cachetid.IndexOf(tidte);
-
-                //if ((index >= 0 && cachereplycount[index] == replycountte)&& !cachetiddefult.Contains(tidte))
-                //{
-                //    continue;
-
-                //}
-                
-                #endregion
-
-                int index = cachetid.IndexOf(tidte);
-
-                if ((index >= 0 && cachereplycount[index] == replycountte) && !cachetiddefult.Contains(tidte))
+                for (int i = 0; i < tids.Length; i++)
                 {
-                    continue;
+                    string tidte = tids[i], replycountte =rtimes[i];
+                    #region MyRegion
+                    //if (i == tds.Length)
+                    //{
+                    //    if (!string.IsNullOrEmpty(tidzhi))
+                    //    {
+                    //        tidte = tidzhi;
+                    //        replycountte = replycountzhi;
+                    //    }
+                    //    else
+                    //    {
+                    //        break;
+                    //    }
+
+                    //}
+                    //else
+                    //{
+                    //    tidte = tds[i];
+                    //    replycountte = replaycounts[i];
+                    //}
+                    //int index = cachetid.IndexOf(tidte);
+
+                    //if ((index >= 0 && cachereplycount[index] == replycountte)&& !cachetiddefult.Contains(tidte))
+                    //{
+                    //    continue;
+
+                    //}
+
+                    #endregion
+
+                    int index = cachetid.IndexOf(tidte);
+
+                    if ((index >= 0 && cachereplycount[index] == replycountte) && !cachetiddefult.Contains(tidte))
+                    {
+                        continue;
+
+                    }
+
+
+                    ltids.Add(tidte);
+
+                    if (cachetiddefult.Contains(tidte))
+                    {
+                        cachetiddefult.Remove(tidte);
+                    }
+
+                    if (index >= 0)
+                    {
+                        cachereplycount[index] = replycountte;
+                    }
+                    else
+                    {
+                        cachetid.Add(tidte);
+                        cachereplycount.Add(replycountte);
+                    }
+
 
                 }
-
-
-               ltids.Add(tidte);
-               
-                if (cachetiddefult.Contains(tidte))
-                {
-                    cachetiddefult.Remove(tidte);
-                }
-              
-                if (index >= 0)
-                {
-                    cachereplycount[index] = replycountte;
-                }
-                else
-                {
-                    cachetid.Add(tidte);
-                    cachereplycount.Add(replycountte);
-                }
-
-
             }
+
 
             
         }
