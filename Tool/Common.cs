@@ -331,7 +331,7 @@ namespace Tieba
         {
             //List<string[]> listc = new List<string[]>();
 
-            string data = "_client_id=wappc_1568832181855_350&_client_type=1&_client_version=12.21.1.0&_phone_imei=fbce298035372371ff25decc0951c03&from=tieba&kw=" + kw + "&pn=1&q_type=2&rn=50&with_group=1";
+            string data = "_client_id=wappc_1568832181855_350&_client_type=2&_client_version=12.21.1.0&_phone_imei=fbce298035372371ff25decc0951c03&from=tieba&kw=" + kw + "&pn=1&q_type=2&rn=50&with_group=1";
 
             data = data + "&sign=" + HttpHelper.GetMD5HashFromFile(data.Replace("&", "") + "tiebaclient!!!");
 

@@ -8,7 +8,7 @@
 
         public const string UPDATE_URL = "http://snowed.applinzi.com";
 
-        public const string strtime = "20220828";
+        public const string strtime = "20220822";
 
 
     }
