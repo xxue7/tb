@@ -122,15 +122,15 @@ namespace Tieba
                 {
                     this.un = un;
 
-                    string url = "https://tieba.baidu.com/home/get/panel?ie=utf-8&un=" + un;
+                    string url = "https://tieba.baidu.com/i/sys/user_json?ie=utf-8&un=" + un;
 
                     string res = HttpHelper.HttpGet(url, Encoding.UTF8);
 
-                    if (res.Contains("\"no\":1130023")||res.Contains("\"no\":1130032"))
-                    {
-                        this.error = "该用户不存在或被屏蔽";
-                        return;
-                    }
+                    //if (res.Contains("\"no\":1130023")||res.Contains("\"no\":1130032"))
+                    //{
+                    //    this.error = "该用户不存在或被屏蔽";
+                    //    return;
+                    //}
 
                     this.uid = new Regex(@"""id"":([^,]+)").Match(res).Groups[1].Value;
                     //un2info();

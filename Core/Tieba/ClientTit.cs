@@ -91,15 +91,8 @@ namespace Tieba
                 try
                 {
                     // Common.Fid = "190294";
-                    if (Common.Fid == null)
-                    {
-                        lcid = new Lcid(tid, HttpHelper.Jq(res, "forum\":{\"id\":\"", "\""), pn);
-                    }
-                    else
-                    {
-                        lcid = new Lcid(tid, Common.Fid, pn);
-                    }
-
+                   string fid = Common.Fid == null? HttpHelper.Jq(res, "forum\":{\"id\":\"", "\""):Common.Fid;
+                   lcid = new Lcid(tid,fid, pn);
 
                 }
                 catch (Exception)
@@ -117,6 +110,7 @@ namespace Tieba
                     Level.AddRange(lcid.llevel);
                     //Himgs.AddRange(lcid.lhimg);
                     Uids.AddRange(lcid.luid);
+                    Por.AddRange(lcid.lpor);
                 }
             }
             //  string res1 = "";
